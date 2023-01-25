@@ -1,8 +1,8 @@
 package com.mdvvvv.todoapp.repositories;
 
 import com.mdvvvv.todoapp.models.TodoItem;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TodoItemRepository extends CrudRepository<TodoItem, Long> {
+public interface TodoItemRepository extends JpaRepository<TodoItem, Long> {
 
 }

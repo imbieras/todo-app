@@ -5,47 +5,36 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.Instant;
 
+@Getter
+@Setter
 @Entity
-@Table(name = "todo_item")
-public class TodoItem {
+@Table(name = "todo_items")
+public class TodoItem implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter
-    @Setter
     private Long id;
-    @Getter
-    @Setter
+
+    @NotBlank(message = "Description is required")
     private String description;
-    @Getter
-    @Setter
-    private boolean complete;
 
-    @Getter
-    @Setter
-    private Instant createdDate;
+    private Boolean isComplete;
 
-    @Getter
-    @Setter
-    private Instant modifiedDate;
+    private Instant createdAt;
 
-    public TodoItem() {
-    }
-
-    public TodoItem(String description) {
-        this.description = description;
-        this.complete = false;
-        this.createdDate = Instant.now();
-        this.modifiedDate = Instant.now();
-    }
+    private Instant updatedAt;
 
     @Override
     public String toString() {
-        return String.format("TodoItem{id=%d, description='%s', complete='%s', createdDate='%s', modifiedDate='%s'}", id, description, complete, createdDate, modifiedDate);
+        return String.format("TodoItem{id=%d, description='%s', isComplete='%s', createdAt='%s', updatedAt='%s'}",
+                id, description, isComplete, createdAt, updatedAt);
     }
+
 }
