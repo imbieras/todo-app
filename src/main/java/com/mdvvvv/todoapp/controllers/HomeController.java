@@ -25,7 +25,9 @@ public class HomeController {
         logger.info("request to GET index");
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("todoItems", todoItemService.getAll());
-        modelAndView.addObject("today", Instant.now().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek());
+        String day = Instant.now().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek().toString().toLowerCase();
+        day = day.substring(0,1).toUpperCase() + day.substring(1);
+        modelAndView.addObject("today", day);
         return modelAndView;
     }
 
