@@ -17,7 +17,7 @@ public class TodoItemService {
     @Autowired
     private TodoItemRepository todoItemRepository;
 
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm MMMM dd, yyyy z");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy 'at' hh:mm a");
 
     public Optional<TodoItem> getById(Long id) {
         return todoItemRepository.findById(id);

@@ -19,10 +19,46 @@
         <div class="col-md-6">
             <h2>Add a new Todo Item</h2>
             <form action="#" th:action="@{/todo}" th:object="${todoItem}" method="POST">
-                <div class="form-group py-3">
+                <div class="form-group pt-3">
                     <label for="description">Description</label>
                     <input class="form-control" type="text" th:field="*{description}" id="description"
                            placeholder="Description" required>
+                </div>
+                <div class="form-group pt-3">
+                    <label for="date-input">Due Date:</label>
+                    <input type="date" id="date-input" required>
+                    <label for="time-input">Due Time:</label>
+                    <input type="time" id="time-input" required>
+                    <input type="hidden" id="combined-input" th:field="*{dueDate}">
+                    <script>
+                        window.onload = function () {
+                            let dateInput = document.getElementById("date-input");
+                            let timeInput = document.getElementById("time-input");
+                            let combinedInput = document.getElementById("combined-input");
+
+                            dateInput.addEventListener("change", updateCombinedInput);
+                            timeInput.addEventListener("change", updateCombinedInput);
+
+                            function updateCombinedInput() {
+                                let date = dateInput.value;
+                                let time = timeInput.value;
+                                if (date !== "" && time !== "") {
+                                    let timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                                    let dateTime = new Date(date + 'T' + time);
+                                    let dateFormat = new Intl.DateTimeFormat('en-US', {
+                                        hour: 'numeric',
+                                        minute: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric',
+                                        year: 'numeric',
+                                        timeZone: timeZone
+                                    });
+                                    let dateValue = dateFormat.format(dateTime);
+                                    combinedInput.value = dateValue;
+                                }
+                            }
+                        }
+                    </script>
                 </div>
                 <button type="submit" class="btn btn-success mt-3">
                     <i class="bi bi-plus-square-fill"></i> Add Todo

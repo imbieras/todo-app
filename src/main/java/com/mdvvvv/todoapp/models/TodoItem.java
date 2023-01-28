@@ -30,10 +30,12 @@ public class TodoItem implements Serializable {
 
     private String updatedAt;
 
+    private String dueDate;
+
     @Override
     public String toString() {
-        return String.format("TodoItem{id=%d, description='%s', isComplete='%s', createdAt='%s', updatedAt='%s'}",
-                id, description, isComplete, createdAt, updatedAt);
+        return String.format("TodoItem{id=%d, description='%s', isComplete='%s', createdAt='%s', updatedAt='%s', dueDate='%s'}",
+                id, description, isComplete, createdAt, updatedAt, dueDate);
     }
 
 }
