@@ -24,11 +24,15 @@
                     <input class="form-control" type="text" th:field="*{description}" id="description"
                            placeholder="Description" required>
                 </div>
-                <div class="form-group pt-3">
-                    <label for="date-input">Due Date:</label>
-                    <input type="date" id="date-input" required>
-                    <label for="time-input">Due Time:</label>
-                    <input type="time" id="time-input" required>
+                <div class="row form-group pt-3">
+                    <div class="col-md-6">
+                        <label for="date-input">Due Date:</label>
+                        <input class="form-control" type="date" id="date-input" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="time-input">Due Time:</label>
+                        <input class="form-control" type="time" id="time-input" required>
+                    </div>
                     <input type="hidden" id="combined-input" th:field="*{dueDate}">
                     <script>
                         window.onload = function () {
